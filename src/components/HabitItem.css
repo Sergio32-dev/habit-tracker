@@ -1,0 +1,158 @@
+.habit-item {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.habit-item:active {
+  transform: scale(0.98);
+}
+
+.habit-item.completed {
+  border-color: var(--success);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), var(--surface));
+}
+
+.habit-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.habit-checkbox {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 3px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  font-weight: 700;
+}
+
+.habit-checkbox .checkmark {
+  color: white;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.habit-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.habit-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.habit-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.habit-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.habit-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.best-streak {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.habit-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.habit-progress-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.habit-delete {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.habit-delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.habit-delete:active {
+  transform: scale(0.9);
+}
+
+@media (max-width: 768px) {
+  .habit-item {
+    padding: 14px;
+    gap: 10px;
+  }
+  
+  .habit-checkbox {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .habit-name {
+    font-size: 16px;
+  }
+  
+  .habit-icon {
+    font-size: 20px;
+  }
+}
+
