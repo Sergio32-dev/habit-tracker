@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест регистрации</title>
+</head>
+<body>
+    <h2>Создать тестового пользователя</h2>
+    <form id="registerForm">
+        <input type="email" id="email" placeholder="Email" value="test@user.com"><br><br>
+        <input type="password" id="password" placeholder="Пароль" value="password123"><br><br>
+        <input type="text" id="name" placeholder="Имя" value="Тестовый пользователь"><br><br>
+        <input type="tel" id="phone" placeholder="Телефон" value="+79991234567"><br><br>
+        <button type="submit">Создать пользователя</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const userData = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value
+            };
+            
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userData)
+                });
+                
+                const result = await response.json();
+                document.getElementById('result').innerHTML = 
+                    response.ok 
+                    ? `<p style="color:green">✅ Пользователь создан: ${result.user.email}</p>`
+                    : `<p style="color:red">❌ Ошибка: ${result.error}</p>`;
+                    
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    `<p style="color:red">❌ Ошибка сети: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

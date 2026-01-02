@@ -1,0 +1,17 @@
+# Создайте файл
+echo const express = require('express'); > api-server.js
+echo const app = express(); >> api-server.js
+echo const PORT = 3001; >> api-server.js
+echo >> api-server.js
+echo app.get('/api/admin/users', (req, res) => { >> api-server.js
+echo   res.json({ >> api-server.js
+echo     success: true, >> api-server.js
+echo     users: [ >> api-server.js
+echo       {id: 1, name: "API User", email: "api@test.com"} >> api-server.js
+echo     ] >> api-server.js
+echo   }); >> api-server.js
+echo }); >> api-server.js
+echo >> api-server.js
+echo app.listen(PORT, () => { >> api-server.js
+echo   console.log(\`API сервер на порту \${PORT}\`); >> api-server.js
+echo }); >> api-server.js

@@ -10,9 +10,23 @@ function YooKassaPayment({ planType, onClose, onSuccess }) {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
+  // Загружаем цены из localStorage (если админ их изменил)
+  const getPrices = () => {
+    const savedPrices = localStorage.getItem('adminPrices');
+    if (savedPrices) {
+      try {
+        return JSON.parse(savedPrices);
+      } catch (e) {
+        console.error('Ошибка загрузки цен:', e);
+      }
+    }
+    return { monthly: 299, yearly: 1999 };
+  };
+
+  const prices = getPrices();
   const plans = {
-    monthly: { price: 299, period: 'месяц', days: 30 },
-    yearly: { price: 1999, period: 'год', days: 365 }
+    monthly: { price: prices.monthly, period: 'месяц', days: 30 },
+    yearly: { price: prices.yearly, period: 'год', days: 365 }
   };
 
   const currentPlan = plans[planType];

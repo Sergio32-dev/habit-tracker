@@ -9,11 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.6.1",
+    "express": "^5.2.1",
+    "lucide-react": "^0.294.0",
+    "mssql": "^10.0.1",
+    "pg": "^8.16.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "lucide-react": "^0.294.0",
-    "date-fns": "^2.30.0",
-    "recharts": "^2.10.3"
+    "recharts": "^2.10.3",
+    "resend": "^6.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -23,4 +29,3 @@
     "vite-plugin-pwa": "^0.17.4"
   }
 }
-

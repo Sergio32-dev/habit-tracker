@@ -96,3 +96,4 @@ Vercel Dashboard
 
 **Главное: Functions видны в Deployments, а не в Settings! 📁**
 
+

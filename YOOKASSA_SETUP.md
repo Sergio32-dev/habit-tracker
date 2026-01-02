@@ -432,3 +432,4 @@ export default async function handler(req, res) {
 
 **Готово! Теперь у вас настроена реальная российская платежная система! 🇷🇺💳**
 
+

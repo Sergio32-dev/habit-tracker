@@ -81,12 +81,40 @@ export const yookassaService = {
    */
   async checkPaymentStatus(paymentId) {
     try {
-      // В реальном приложении запрос к вашему backend
-      // const response = await fetch(`/api/yookassa/check-payment/${paymentId}`)
-      
+      const response = await fetch(`/api/yookassa/check-payment?paymentId=${paymentId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        let errorData;
+        try {
+          errorData = JSON.parse(errorText);
+        } catch (e) {
+          throw new Error(`Ошибка сервера (${response.status}): ${errorText}`);
+        }
+        throw new Error(errorData.error || 'Ошибка проверки платежа');
+      }
+
+      const text = await response.text();
+      if (!text || text.trim() === '') {
+        throw new Error('Пустой ответ от сервера');
+      }
+
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (e) {
+        throw new Error(`Ошибка парсинга JSON: ${e.message}`);
+      }
+
       return {
-        status: 'succeeded',
-        paid: true
+        status: result.status,
+        paid: result.paid,
+        payment: result.payment
       };
     } catch (error) {
       console.error('Ошибка проверки платежа:', error);

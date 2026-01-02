@@ -16,9 +16,35 @@ function PremiumModal({ onClose, onSubscribe }) {
   const { isPremium } = usePremium();
   const [selectedPlan, setSelectedPlan] = useState('monthly');
 
+  // Загружаем цены из localStorage (если админ их изменил)
+  const getPrices = () => {
+    const savedPrices = localStorage.getItem('adminPrices');
+    if (savedPrices) {
+      try {
+        return JSON.parse(savedPrices);
+      } catch (e) {
+        console.error('Ошибка загрузки цен:', e);
+      }
+    }
+    return { monthly: 299, yearly: 1999 };
+  };
+
+  const prices = getPrices();
+  const yearlyOriginal = prices.yearly * 12;
+  const yearlyDiscount = Math.round((1 - prices.yearly / yearlyOriginal) * 100);
+
   const plans = {
-    monthly: { price: 299, period: 'месяц', discount: null },
-    yearly: { price: 1999, period: 'год', discount: '44%', originalPrice: 3588 }
+    monthly: { 
+      price: prices.monthly, 
+      period: 'месяц', 
+      discount: null 
+    },
+    yearly: { 
+      price: prices.yearly, 
+      period: 'год', 
+      discount: yearlyDiscount > 0 ? `${yearlyDiscount}%` : null,
+      originalPrice: yearlyOriginal
+    }
   };
 
   const currentPlan = plans[selectedPlan];

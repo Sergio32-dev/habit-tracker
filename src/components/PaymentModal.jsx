@@ -118,3 +118,4 @@ function PaymentModal({ planType, onClose, onSuccess }) {
 
 export default PaymentModal;
 
+

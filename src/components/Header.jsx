@@ -1,10 +1,12 @@
-import { Calendar, Crown } from 'lucide-react';
+import { Calendar, Crown, User, Settings, LogOut } from 'lucide-react';
 import { format } from 'date-fns';
 import { usePremium } from '../contexts/PremiumContext';
+import { useAuth } from '../contexts/AuthContext';
 import './Header.css';
 
-function Header({ onPremiumClick }) {
+function Header({ onAdminClick }) {
   const { isPremium } = usePremium();
+  const { user, logout, isAdmin } = useAuth();
   const today = format(new Date(), 'EEEE, d MMMM');
 
   return (
@@ -24,6 +26,33 @@ function Header({ onPremiumClick }) {
             <Calendar size={16} />
             {today}
           </p>
+        </div>
+        <div className="header-actions">
+          <div className="user-info">
+            <User size={18} />
+            <span>{user?.username}</span>
+            {isAdmin() && (
+              <span className="admin-badge">Админ</span>
+            )}
+          </div>
+          {isAdmin() && (
+            <button 
+              className="header-btn admin-btn" 
+              onClick={onAdminClick} 
+              title="Панель администратора"
+            >
+              <Settings size={18} />
+              <span className="btn-text">Настройки</span>
+            </button>
+          )}
+          <button 
+            className="header-btn logout-btn" 
+            onClick={logout} 
+            title="Выйти"
+          >
+            <LogOut size={18} />
+            <span className="btn-text">Выйти</span>
+          </button>
         </div>
       </div>
     </header>

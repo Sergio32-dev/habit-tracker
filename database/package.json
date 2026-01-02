@@ -1,0 +1,20 @@
+{
+  "name": "habit-tracker-database",
+  "version": "1.0.0",
+  "description": "Database configuration and utilities for Habit Tracker",
+  "main": "config.js",
+  "scripts": {
+    "test-connection": "node scripts/test-connection.js"
+  },
+  "dependencies": {
+    "mssql": "^10.0.1",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {},
+  "keywords": ["sql-server", "database"],
+  "author": "",
+  "license": "MIT"
+}
+
+

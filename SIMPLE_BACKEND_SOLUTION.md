@@ -57,3 +57,4 @@ Netlify Functions проще:
 2. Использовать внешний backend (Railway/Render)
 3. Временная симуляция платежей
 
+

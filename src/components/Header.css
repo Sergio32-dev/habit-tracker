@@ -1,16 +1,33 @@
 .header {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--primary, #6366f1), var(--primary-dark, #4f46e5));
   color: white;
   padding: 24px 20px;
-  box-shadow: 0 2px 8px var(--shadow);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
+/* Убеждаемся что все элементы Header имеют белый цвет текста */
+.header,
+.header * {
+  color: white !important;
+}
+
+.header h1,
+.header p,
+.header span,
+.header button {
+  color: white !important;
+}
+
 .header-content {
   max-width: 600px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }
 
 .header-title-row {
@@ -47,6 +64,73 @@
   text-transform: capitalize;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+}
+
+.admin-badge {
+  background: rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.header-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.header-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.admin-btn {
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.admin-btn:hover {
+  background: rgba(255, 215, 0, 0.3);
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-text {
+  font-size: 14px;
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 20px 16px;
@@ -54,6 +138,22 @@
   
   .header-title h1 {
     font-size: 24px;
+  }
+
+  .header-content {
+    flex-wrap: wrap;
+  }
+
+  .user-info span:not(.admin-badge) {
+    display: none;
+  }
+
+  .btn-text {
+    display: none;
+  }
+
+  .header-btn {
+    padding: 10px;
   }
 }
 
